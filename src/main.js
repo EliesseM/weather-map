@@ -1,6 +1,5 @@
 import maplibre from "maplibre-gl";
 
-
 const map = new maplibre.Map({
   container: "map",
   center: [4.8522, 45.7566],
@@ -37,3 +36,11 @@ map.on("click", (e) => {
   // coordinates of the point on the map that was clicked.
   console.log("A click event has occurred at " + e.lngLat);
 });
+
+async function fetchData() {
+  let response = await fetch(
+    "https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&current_weather=true"
+  );
+  response = await response.json();
+  return response;
+}
