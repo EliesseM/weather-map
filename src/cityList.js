@@ -60,3 +60,4 @@ let clermontFerrand = {
 };
 
 let cities = [lille, paris, marseille, lyon, toulouse, nice, nantes, strasbourg, bordeaux, montpellier, amiens, brest, rennes, limoges, clermontFerrand];
+export {cities};
