@@ -58,3 +58,5 @@ let clermontFerrand = {
   lng: 3.0820047061623086,
   lat: 45.777243932108945 
 };
+
+let cities = [lille, paris, marseille, lyon, toulouse, nice, nantes, strasbourg, bordeaux, montpellier, amiens, brest, rennes, limoges, clermontFerrand];
