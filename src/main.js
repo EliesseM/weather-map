@@ -1,5 +1,5 @@
 import maplibre from "maplibre-gl";
-import {cities} from "./cityList";
+import { cities } from "./cityList";
 
 const map = new maplibre.Map({
   container: "map",
@@ -38,7 +38,16 @@ map.on("click", (e) => {
   console.log("A click event has occurred at " + e.lngLat);
 });
 
-cities.forEach(city => {
+cities.forEach((city) => {
   console.log(city);
 });
 
+let lat = "";
+let lng = "";
+
+async function fetchData(lat, lng) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`;
+  let response = await fetch(url);
+  response = await response.json();
+  return response;
+}

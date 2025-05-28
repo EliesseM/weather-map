@@ -13,7 +13,7 @@ initial commit
 creations des 4branches à partir de main (alex, Amrouche, Mosbah-Eliesse, guillaume).
 feature à ajouter :
 
-                    selection de 10 villes principales pour une affichage d'icone (soleil, nuages, pluie,....)
+- selection de 15 villes principales pour une affichage d'icone (soleil, nuages, pluie,....)
 
                     Paris
 
@@ -34,3 +34,13 @@ feature à ajouter :
                     Bordeaux
 
                     Montpellier
+
+                    Amiens
+
+                    Brest
+
+                    Rennes
+
+                    Clermont-Ferrand
+
+- Requete principale pour API (fetch)
