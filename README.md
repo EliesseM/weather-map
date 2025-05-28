@@ -11,3 +11,26 @@ configuration de la carte dans le main.js
 
 initial commit
 creations des 4branches à partir de main (alex, Amrouche, Mosbah-Eliesse, guillaume).
+feature à ajouter :
+
+                    selection de 10 villes principales pour une affichage d'icone (soleil, nuages, pluie,....)
+
+                    Paris
+
+                    Marseille
+
+                    Lyon
+
+                    Toulouse
+
+                    Nice
+
+                    Lille
+
+                    Nantes
+
+                    Strasbourg
+
+                    Bordeaux
+
+                    Montpellier
