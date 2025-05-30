@@ -44,8 +44,8 @@ map.on("click", async (e) => {
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
-      `<div class= "popupweather"><h3>${response.current_weather.temperature}</h3>
-           <p><strong>Station:</strong> Test Station 1</p>
+      `<div class= "popupweather"><h3>${response.current_weather.temperature}${response.current_weather_units.temperature}</h3>
+           <p><strong>Vitesse du vent : </strong>${response.current_weather.windspeed}${response.current_weather_units.windspeed}</p>
            <p><strong>Adresse :</strong> Address test</p>
            </div>`
     )
