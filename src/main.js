@@ -88,22 +88,3 @@ cities.forEach(async (city) => {
   // marker.setPopup(popup); // Attacher le popup au marqueur
   marker.addTo(map);
 });
-
-
-
-
-
-
-
-
-
-const time = response.current_weather.time;
-const parts = time.split("T");
-const hourPart = parts[1];
-
-// // On peut aussi splitter sur ":" pour séparer heures et minutes
-// const [hour, minute] = hourPart.split(":");
-
-// const formatted = `${hour}h${minute}`; // => "08h00"
-
-// console.log(formatted);
