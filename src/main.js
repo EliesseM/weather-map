@@ -46,15 +46,32 @@ map.on("click", async (e) => {
   const parts = time.split("T");
   const hourPart = parts[1];
 
+  const windSpeed = response.current_weather.windspeed;
+  const windDirection = response.current_weather.winddirection;
+
+  // Taille dynamique de l'icône : entre 30px et 80px
+  const arrowSize = Math.min(80, Math.max(30, windSpeed * 4)); // 10 km/h → 40px
+
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
-      `<div class= "popupweather"><h3>${response.current_weather.temperature}${response.current_weather_units.temperature}</h3>
-           <p><strong>Vitesse du vent : </strong>${response.current_weather.windspeed} ${response.current_weather_units.windspeed}</p>
-           <p><strong>Direction du vent : </strong><span style="font-size: 40px; display:inline-block; transform: scale(2); transform: rotate(${response.current_weather.winddirection}deg);">⬆⬆</span>
-           (${response.current_weather.winddirection}°)</p>
-           <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-           </div>`
+      `
+    <div class="popupweather">
+      <h3>${response.current_weather.temperature}${response.current_weather_units.temperature}</h3>
+      <p><strong>Vitesse du vent :</strong> ${windSpeed} ${response.current_weather_units.windspeed}</p>
+      <p><strong>Direction du vent :</strong>
+        <span style="
+          font-size: ${arrowSize}px;
+          display: inline-block;
+          transform: rotate(${windDirection}deg);
+          transform-origin: center;">
+          ⬆
+        </span>
+        (${windDirection}°)
+      </p>
+      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+    </div>
+    `
     )
     .addTo(map);
 });

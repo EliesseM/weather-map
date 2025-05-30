@@ -51,7 +51,7 @@ adapter dynamiquement les values réelles pour chaque ville de la liste (soleil 
 generation d'une popup on click avec les infos de la villes sur laquelle on a cliqué,
 fermeture automatique de la popup lors d'un click ailleurs (ouverture new popup = fermeture ancienne popup),
 ajout d'infos personnalisées dans la pop-up
-ajout d'une double fleche qui indiquera la direction du vent avec valeur en °, ainsi que sa vitesse en km/h et reconfiguration du format de l'heure avec methode split().
+ajout d'une fleche qui indiquera la direction du vent avec valeur en ° (taille adaptée à la puissance), ainsi que sa vitesse en km/h et reconfiguration du format de l'heure avec methode split().
 
 (Weather code/icone meteo:
 
