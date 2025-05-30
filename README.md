@@ -70,4 +70,6 @@ Code Description
 95 _ Thunderstorm: Slight or moderate
 96, 99 _ Thunderstorm with slight and heavy hail)
 
-TODO : AMELIORER LE STYLE GENERAL ET FAIRE EN SORTE QUE LA CARTE NE SOIT PAS FULL SCREEN
+amelioration du style général en ayant mi la map dans un container et ajout d'un header :
+
+TODO : REDIGER UN TEXTE EXPLICATIF QUI SERA AFFICHE A DROITE DE LA MAP

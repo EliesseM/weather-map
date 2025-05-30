@@ -103,14 +103,25 @@ button:focus-visible {
   color: #1a1a1a;
 }
 header {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Contenu header en flex, centré verticalement */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
 main {
   display: flex;
   justify-content: center;
