@@ -51,9 +51,9 @@ adapter dynamiquement les values réelles pour chaque ville de la liste (soleil 
 generation d'une popup on click avec les infos de la villes sur laquelle on a cliqué,
 fermeture automatique de la popup lors d'un click ailleurs (ouverture new popup = fermeture ancienne popup),
 ajout d'infos personnalisées dans la pop-up
-ajout de la direction du vent
+ajout d'une double fleche qui indiquera la direction du vent avec valeur en °, ainsi que sa vitesse en km/h et reconfiguration du format de l'heure avec methode split().
 
-Weather code/icone meteo:
+(Weather code/icone meteo:
 
 Code Description
 0 Clear sky
@@ -68,4 +68,6 @@ Code Description
 80, 81, 82 Rain showers: Slight, moderate, and violent
 85, 86 Snow showers slight and heavy
 95 _ Thunderstorm: Slight or moderate
-96, 99 _ Thunderstorm with slight and heavy hail
+96, 99 _ Thunderstorm with slight and heavy hail)
+
+TODO : AMELIORER LE STYLE GENERAL ET FAIRE EN SORTE QUE LA CARTE NE SOIT PAS FULL SCREEN

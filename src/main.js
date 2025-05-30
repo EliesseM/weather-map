@@ -41,12 +41,19 @@ map.on("click", async (e) => {
   // You can use the coordinates to fetch weather data or perform other actions.
   let response = await fetchData(e.lngLat.lat, e.lngLat.lng);
   console.log(response);
+
+  const time = response.current_weather.time;
+  const parts = time.split("T");
+  const hourPart = parts[1];
+
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
       `<div class= "popupweather"><h3>${response.current_weather.temperature}${response.current_weather_units.temperature}</h3>
-           <p><strong>Vitesse du vent : </strong>${response.current_weather.windspeed}${response.current_weather_units.windspeed}</p>
-           <p><strong>Adresse :</strong> Address test</p>
+           <p><strong>Vitesse du vent : </strong>${response.current_weather.windspeed} ${response.current_weather_units.windspeed}</p>
+           <p><strong>Direction du vent : </strong><span style="font-size: 40px; display:inline-block; transform: scale(2); transform: rotate(${response.current_weather.winddirection}deg);">⬆⬆</span>
+           (${response.current_weather.winddirection}°)</p>
+           <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
            </div>`
     )
     .addTo(map);
@@ -81,3 +88,22 @@ cities.forEach(async (city) => {
   // marker.setPopup(popup); // Attacher le popup au marqueur
   marker.addTo(map);
 });
+
+
+
+
+
+
+
+
+
+const time = response.current_weather.time;
+const parts = time.split("T");
+const hourPart = parts[1];
+
+// // On peut aussi splitter sur ":" pour séparer heures et minutes
+// const [hour, minute] = hourPart.split(":");
+
+// const formatted = `${hour}h${minute}`; // => "08h00"
+
+// console.log(formatted);
