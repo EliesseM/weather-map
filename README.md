@@ -51,6 +51,7 @@ adapter dynamiquement les values réelles pour chaque ville de la liste (soleil 
 generation d'une popup on click avec les infos de la villes sur laquelle on a cliqué,
 fermeture automatique de la popup lors d'un click ailleurs (ouverture new popup = fermeture ancienne popup),
 ajout d'infos personnalisées dans la pop-up
+ajout de la direction du vent
 
 Weather code/icone meteo:
 
