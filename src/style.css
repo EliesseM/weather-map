@@ -2,11 +2,6 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  /* color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,10 +33,12 @@ h1 {
 }
 
 #app {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -100,6 +97,7 @@ button:focus-visible {
 .popupweather {
   color: #1a1a1a;
 }
+
 header {
   width: 100%;
   background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
@@ -109,18 +107,24 @@ header {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Contenu header en flex, centrÃ© verticalement */
 .header-content {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   min-height: 12vh;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+  text-align: center;
 }
+
 main {
   display: flex;
   justify-content: center;
   padding: 2rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .weathericon {
@@ -130,15 +134,66 @@ main {
 }
 
 #map-container {
-  width: 45rem;
-  height: 65.8vh;
+  width: 100%;
+  max-width: 720px;
+  height: 60vh;
   border: 2px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 1rem;
+  box-sizing: border-box;
 }
 
 #map {
   width: 100%;
   height: 100%;
+}
+
+/* Responsive text and layout adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2em;
+  }
+
+  .logo {
+    height: 4em;
+  }
+
+  .card {
+    padding: 1em;
+  }
+
+  #map-container {
+    height: 50vh;
+  }
+
+  header {
+    height: auto;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .logo {
+    height: 3em;
+  }
+
+  #map-container {
+    height: 45vh;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
 }
