@@ -123,6 +123,12 @@ main {
 
 }
 
+.weathericon {
+  margin: 0;
+  font-size: 50px;
+  opacity: 0.8 !important;
+}
+
 #map-container {
   width: 900px;
   height: 75vh;
