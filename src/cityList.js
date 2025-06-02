@@ -58,6 +58,22 @@ let clermontFerrand = {
   lng: 3.0820047061623086,
   lat: 45.777243932108945 
 };
+let auxerre = {
+  lng: 3.5715760882710583,
+  lat: 47.796714236400106 
+};
+let dijon = {
+  lng: 5.0403294085011225,
+  lat: 47.321366852165 
+};
+let metz = {
+  lng: 6.175272476738257,
+  lat: 49.12095971818252 
+};
+let caen = {
+  lng: -0.36670903488402473,
+  lat: 49.17217673987568 
+};
 
-let cities = [lille, paris, marseille, lyon, toulouse, nice, nantes, strasbourg, bordeaux, montpellier, amiens, brest, rennes, limoges, clermontFerrand];
+let cities = [lille, paris, marseille, lyon, toulouse, nice, nantes, strasbourg, bordeaux, montpellier, amiens, brest, rennes, limoges, clermontFerrand, auxerre, dijon, metz, caen];
 export {cities};
