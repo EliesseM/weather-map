@@ -17,7 +17,7 @@ function createFooter() {
 
   const participants = document.createElement("p");
   participants.textContent =
-    "Participants : Guillaume Loriot, Eliesse Mosbah, Alexandre Baruel, Norris Amrouche";
+    "Participants : Guillaume Loriot, Eliesse Mosbah, Alexandre Barruel, Norris Amrouche";
 
   footer.appendChild(infoProjet);
   footer.appendChild(participants);
