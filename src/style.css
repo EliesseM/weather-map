@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -34,6 +34,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 0;
 }
 
 #app {
@@ -108,7 +109,7 @@ header {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Contenu header en flex, centré verticalement */
+/* Contenu header en flex, centrÃ© verticalement */
 .header-content {
   display: flex;
   align-items: center;
@@ -120,7 +121,6 @@ main {
   display: flex;
   justify-content: center;
   padding: 2rem;
-
 }
 
 .weathericon {
@@ -130,8 +130,8 @@ main {
 }
 
 #map-container {
-  width: 900px;
-  height: 75vh;
+  width: 45rem;
+  height: 65.8vh;
   border: 2px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
@@ -141,10 +141,4 @@ main {
 #map {
   width: 100%;
   height: 100%;
-}
-
-h1{
-  text-align: center;
-  margin: 0;
-  font-size: 2.5rem;
 }
