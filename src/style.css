@@ -120,48 +120,68 @@ header {
 
 main {
   display: flex;
-  justify-content: center;
   padding: 2rem;
-  flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
+  height: 60vh; /* fixe la hauteur du main */
+  gap: 1rem;
 }
 
-.weathericon {
-  margin: 0;
-  font-size: 50px;
-  opacity: 0.8 !important;
+/* Conteneur des cartes à gauche, scroll vertical */
+#random-city-cards {
+  flex: 1; /* prend la place disponible à gauche */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* scroll vertical */
+  gap: 1rem;
+  padding-right: 10px; /* espace pour la scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #646cff #e0e0e0;
 }
 
-#map-container {
+/* Scrollbar pour Webkit (Chrome, Edge, Safari) */
+#random-city-cards::-webkit-scrollbar {
+  width: 8px;
+}
+#random-city-cards::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+#random-city-cards::-webkit-scrollbar-thumb {
+  background-color: #646cff;
+  border-radius: 4px;
+}
+
+/* Style des cartes */
+.city-card {
   width: 100%;
-  max-width: 720px;
-  height: 54.5vh;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+  padding: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.city-card:hover {
+  box-shadow: 0 6px 12px rgb(100 108 255 / 0.5);
+}
+
+/* Conteneur map à droite */
+#map-container {
+  width: 720px;
+  height: 100%;
   border: 2px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  margin: 1rem;
-  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
+/* IMPORTANT : map doit occuper tout son conteneur */
 #map {
   width: 100%;
   height: 100%;
-}
-
-#random-city-card {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.city-card {
-  border: 1px solid #333;
-  padding: 10px;
-  border-radius: 5px;
-  width: 150px;
-  background: #f0f0f0;
 }
 
 /* Responsive text and layout adjustments */
@@ -180,16 +200,20 @@ main {
 
   #map-container {
     height: 50vh;
+    width: 100%;
   }
 
-  header {
+  main {
+    flex-direction: column;
     height: auto;
   }
 
-  .header-content {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
+  #random-city-cards {
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 1rem;
   }
 }
 
@@ -210,4 +234,9 @@ main {
     padding: 0.5em 1em;
     font-size: 0.9em;
   }
+}
+.weathericon {
+  margin: 0;
+  font-size: 50px;
+  opacity: 0.8 !important;
 }

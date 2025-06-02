@@ -72,7 +72,7 @@ Code Description
 
 amelioration du style général en ayant mi la map dans un container et ajout d'un header :
 
-ajout de 5 cards qui de maniere aleatoire affichent 5 villes principales
+ajout de 5 cards qui de maniere aleatoire affichent 5 villes principales en scrollbar sur la gauche
 ajout d'un footer avec infos (participants et mentions légales)
 
 TODO :

@@ -2,6 +2,8 @@ import maplibre from "maplibre-gl";
 import { cities } from "./cityList.js";
 import { weatherCodeToEmoji } from "./weatherCode.js";
 import { createCityCards } from "./city-cards.js";
+import { fetchWeatherData } from "./api-requests.js";
+import { fetchCityData } from "./api-requests.js";
 import "./style.css";
 
 const map = new maplibre.Map({
@@ -77,19 +79,6 @@ map.on("click", async (e) => {
     .addTo(map);
 });
 
-async function fetchWeatherData(lat, lng) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`;
-  let response = await fetch(url);
-  response = await response.json();
-
-  return response;
-}
-  async function fetchCityData() {
-  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=48.8566&lon=2.3522`;
-  let cityResponse = await fetch(url);
-  cityResponse = await cityResponse.json();
-  return cityResponse;
-}
 cities.forEach(async (city) => {
   console.log(city);
 
