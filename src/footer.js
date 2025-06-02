@@ -1,5 +1,3 @@
-import { Padding } from "maplibre-gl";
-
 function createFooter() {
   const footer = document.createElement("footer");
 
