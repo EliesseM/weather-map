@@ -72,14 +72,17 @@ Code Description
 
 amelioration du style général en ayant mi la map dans un container et ajout d'un header :
 
+ajout de 5 cards qui de maniere aleatoire affichent 5 villes principales
+ajout d'un footer avec infos (participants et mentions légales)
+
 TODO :
 
-- FAIRE FOOTER AVEC INFO CLASSIQUE + LES PARTICIPANTS
+- AJOUTER AU FOOTER AVEC LES LIENS GITHUB DES PARTICIPANTS ET LES MENTIONS LEGALES
 
 - FAIRE EN SORTE QUE LA MAP RESTE EN BAS DU HEADER MAIS NE SOIT PLUS CENTREE MAIS A GAUCHE AVEC ESPACE SUFFISANT A DROITE POUR AFFICHER UN TEXTE
 
 - REDIGER UN TEXTE EXPLICATIF QUI SERA AFFICHE A DROITE DE LA MAP
 
-- CHOISIR 5 GRANDES VILLES ET METTRE LEUR METEO TJS AFFICHEE CHACUNE DANS UNE CARD (par ex en dessous du text explicatif)
+- AJOUTER LES CONDITIONS METEO DE LA VILLE DANS LES CARDS ALEATOIRES ( faire en sorte que l'affichage de celles-ci soit par ex en dessous du text explicatif)
 
 - TROUVER LA LOGIQUE POUR AVOIR LA POSSIBILITE D'AJOUTER UNE VILLE EN FAVORI (si possible l'ajouter dans la liste des card)

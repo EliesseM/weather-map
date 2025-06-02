@@ -40,7 +40,7 @@ map.on("click", async (e) => {
   // coordinates of the point on the map that was clicked.
   console.log("A click event has occurred at " + e.lngLat);
   // You can use the coordinates to fetch weather data or perform other actions.
-  let response = await fetchData(e.lngLat.lat, e.lngLat.lng);
+  let response = await fetchWeatherData(e.lngLat.lat, e.lngLat.lng);
   console.log(response);
 
   const time = response.current_weather.time;
@@ -77,17 +77,23 @@ map.on("click", async (e) => {
     .addTo(map);
 });
 
-async function fetchData(lat, lng) {
+async function fetchWeatherData(lat, lng) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current_weather=true`;
   let response = await fetch(url);
   response = await response.json();
 
   return response;
 }
+  async function fetchCityData() {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=48.8566&lon=2.3522`;
+  let cityResponse = await fetch(url);
+  cityResponse = await cityResponse.json();
+  return cityResponse;
+}
 cities.forEach(async (city) => {
   console.log(city);
 
-  let result = await fetchData(city.lat, city.lng);
+  let result = await fetchWeatherData(city.lat, city.lng);
   console.log(result.current_weather.weathercode);
   const el = document.createElement("p");
   el.className = "weathericon";
