@@ -1,6 +1,7 @@
 import maplibre from "maplibre-gl";
-import { cities } from "./cityList";
+import { cities } from "./cityList.js";
 import { weatherCodeToEmoji } from "./weatherCode.js";
+import { createCityCards } from "./city-cards.js";
 import "./style.css";
 
 const map = new maplibre.Map({
@@ -105,3 +106,10 @@ cities.forEach(async (city) => {
   // marker.setPopup(popup); // Attacher le popup au marqueur
   marker.addTo(map);
 });
+
+const container = document.getElementById("random-city-cards");
+const cards = createCityCards(5);
+cards.forEach((card) => {
+  container.appendChild(card);
+});
+console.log(cards);
