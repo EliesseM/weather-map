@@ -8,8 +8,8 @@ function createFooter() {
     background: "linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)",
     color: "#ffffff",
     borderTop: "1px solid rgba(255, 255, 255, 0.2)",
-    padding: "1rem",
-    marginTop: "3.1rem",
+    marginTop: "4.5rem",
+    padding: "0",
   });
 
   const infoProjet = document.createElement("p");
@@ -19,19 +19,19 @@ function createFooter() {
   participants.innerHTML = `
     Participants :
     <a href="https://github.com/GuillaumeLoriot" target="_blank" style="color: white; margin: 0 5px;">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="16" style="vertical-align: middle; margin-right: 5px;">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
       Guillaume Loriot
     </a>,
     <a href="https://github.com/EliesseM" target="_blank" style="color: white; margin: 0 5px;">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="16" style="vertical-align: middle; margin-right: 5px;">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
       Eliesse Mosbah
     </a>,
     <a href="https://github.com/SakaS069" target="_blank" style="color: white; margin: 0 5px;">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="16" style="vertical-align: middle; margin-right: 5px;">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
       Alexandre Baruel
     </a>,
     <a href="https://github.com/Amr69130" target="_blank" style="color: white; margin: 0 5px;">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="16" style="vertical-align: middle; margin-right: 5px;">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
       Norris Amrouche
     </a>
   `;
