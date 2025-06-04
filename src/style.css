@@ -208,7 +208,6 @@ footer img {
   margin-right: 4px;
 }
 
-/* Medium devices (tablettes) */
 @media (max-width: 768px) {
   h1 {
     font-size: 2.2rem;
@@ -237,7 +236,6 @@ footer img {
   }
 }
 
-/* Small devices (téléphones) */
 @media (max-width: 480px) {
   h1 {
     font-size: 1.8rem;
@@ -256,13 +254,11 @@ footer img {
   width: 100%;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
   padding: 0;
-  transition: box-shadow 0.3s ease;
 }
 
 .description-container p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   line-height: 1.5;
   text-align: center;
 }
