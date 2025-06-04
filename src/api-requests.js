@@ -5,8 +5,8 @@ async function fetchWeatherData(lat, lng) {
 
   return response;
 }
-async function fetchCityData() {
-  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=48.8566&lon=2.3522`;
+async function fetchCityData(lat, lng) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
   let cityResponse = await fetch(url);
   cityResponse = await cityResponse.json();
   return cityResponse;

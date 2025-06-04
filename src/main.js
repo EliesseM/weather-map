@@ -4,6 +4,7 @@ import { weatherCodeToEmoji } from "./weatherCode.js";
 import { createCityCards } from "./city-cards.js";
 import { fetchWeatherData } from "./api-requests.js";
 import { fetchCityData } from "./api-requests.js";
+import { serializeCoordinates, deserializeCoordinates } from "./serializer.js";
 import "./style.css";
 
 const map = new maplibre.Map({
@@ -52,6 +53,10 @@ map.on("click", async (e) => {
   const windSpeed = response.current_weather.windspeed;
   const windDirection = response.current_weather.winddirection;
 
+  const coordinates = {
+    lng: e.lngLat.lng,
+    lat: e.lngLat.lat
+  }
   // Taille dynamique de l'icône : entre 30px et 80px
   const arrowSize = Math.min(80, Math.max(30, windSpeed * 4)); // 10 km/h → 40px
 
@@ -73,10 +78,18 @@ map.on("click", async (e) => {
         (${windDirection}°)
       </p>
       <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+      <button id="favoris" value=${serializeCoordinates(coordinates)}>Favoris</button>
     </div>
     `
     )
     .addTo(map);
+    const button = document.getElementById('favoris');
+    button.addEventListener('click', ()=>{
+      let key = "coordinates";
+      let value = button.value;
+      localStorage.setItem(key,value);
+      console.log(localStorage.getItem("coordinates"));
+    })
 });
 
 cities.forEach(async (city) => {
