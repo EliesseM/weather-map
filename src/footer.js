@@ -2,14 +2,22 @@ function createFooter() {
   const footer = document.createElement("footer");
 
   Object.assign(footer.style, {
-    bottom: "0",
-    left: "0",
     width: "100%",
     background: "linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)",
     color: "#fff",
     textAlign: "center",
-    padding: "0",
+    padding: "0.4rem 1rem",
     zIndex: "100",
+    margin: "0",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    fontSize: "0.75rem",
+    position: "fixed",
+    bottom: "0",
+    left: "0",
+    height: "40px",
   });
 
   const infoProjet = document.createElement("p");

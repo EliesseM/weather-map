@@ -38,6 +38,7 @@ const map = new maplibre.Map({
 
 // // The `click` event is an example of a `MapMouseEvent`.
 // // Set up an event listener on the map.
+let favs = [];
 map.on("click", async (e) => {
   // The event object (e) contains information like the
   // coordinates of the point on the map that was clicked.
@@ -86,7 +87,9 @@ map.on("click", async (e) => {
     const button = document.getElementById('favoris');
     button.addEventListener('click', ()=>{
       let key = "coordinates";
-      let value = button.value;
+      let coordinates = deserializeCoordinates(button.value);
+      favs.push(coordinates);
+      let value = JSON.stringify(favs);
       localStorage.setItem(key,value);
       console.log(localStorage.getItem("coordinates"));
     })
