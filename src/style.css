@@ -251,12 +251,13 @@ footer img {
     font-size: 0.9em;
   }
 }
-.description-container {
+#description {
   width: 100%;
   background: white;
   border-radius: 8px;
   padding: 0;
   display: flex;
+  background-color: #00f2fe;
 }
 
 .description-container p {

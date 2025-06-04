@@ -1,6 +1,6 @@
 export function createDescription() {
-  const description = document.createElement("div");
-  description.className = "description-container";
+  let description = document.getElementById("description");
+  // description.className = "description";
 
   const infoDescription = document.createElement("p");
   infoDescription.textContent =
@@ -9,7 +9,8 @@ export function createDescription() {
   description.appendChild(infoDescription);
   const main = document.querySelector("main");
 
-  main.append(description);
+  main.append(descriptionDiv);
+  description.appendChild(p);
 }
 
 createDescription();
