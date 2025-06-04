@@ -117,7 +117,7 @@ header {
   padding: 0 1rem;
 }
 
-main {
+#flex {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -256,6 +256,7 @@ footer img {
   background: white;
   border-radius: 8px;
   padding: 0;
+  display: flex;
 }
 
 .description-container p {
