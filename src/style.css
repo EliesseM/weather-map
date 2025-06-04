@@ -102,6 +102,8 @@ header {
   height: 12vh;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
 .header-content {
@@ -247,14 +249,26 @@ footer img {
     padding: 0.5em 1em;
     font-size: 0.9em;
   }
+}
+.description-container {
+  width: 60%;
+  scale: 90%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+  padding: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
 
-  footer {
-    font-size: 0.8rem;
-    padding: 0.8rem;
-  }
+.description-container p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-align: center;
+}
 
-  footer a {
-    display: inline-block;
-    margin: 2px 0;
+@media (max-width: 600px) {
+  .description-container p {
+    font-size: 1rem;
   }
 }

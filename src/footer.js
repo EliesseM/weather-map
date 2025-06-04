@@ -9,7 +9,7 @@ function createFooter() {
     background: "linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)",
     color: "#fff",
     textAlign: "center",
-    padding: "1rem",
+    padding: "0",
     zIndex: "100",
   });
 
