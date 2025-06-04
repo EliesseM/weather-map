@@ -2,14 +2,15 @@ function createFooter() {
   const footer = document.createElement("footer");
 
   Object.assign(footer.style, {
+    position: "fixed",
+    bottom: "0",
+    left: "0",
     width: "100%",
-    textAlign: "center",
-    fontSize: "0.9rem",
     background: "linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)",
-    color: "#ffffff",
-    borderTop: "1px solid rgba(255, 255, 255, 0.2)",
-    marginTop: "4.5rem",
-    padding: "0",
+    color: "#fff",
+    textAlign: "center",
+    padding: "1rem",
+    zIndex: "100",
   });
 
   const infoProjet = document.createElement("p");
@@ -28,7 +29,7 @@ function createFooter() {
     </a>,
     <a href="https://github.com/SakaS069" target="_blank" style="color: white; margin: 0 5px;">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
-      Alexandre Baruel
+      Alexandre Barruel
     </a>,
     <a href="https://github.com/Amr69130" target="_blank" style="color: white; margin: 0 5px;">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="25" style="vertical-align: middle; margin-right: 5px;">
