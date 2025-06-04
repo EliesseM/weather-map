@@ -2,7 +2,6 @@ function createFooter() {
   const footer = document.createElement("footer");
 
   Object.assign(footer.style, {
-    position: "fixed",
     bottom: "0",
     left: "0",
     width: "100%",
@@ -46,9 +45,9 @@ function createFooter() {
   legalLink.target = "_blank";
   mentions.appendChild(legalLink);
 
-  footer.appendChild(infoProjet);
   footer.appendChild(participants);
   footer.appendChild(mentions);
+  footer.appendChild(infoProjet);
 
   document.body.appendChild(footer);
 }
