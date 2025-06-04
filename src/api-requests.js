@@ -6,7 +6,7 @@ async function fetchWeatherData(lat, lng) {
   return response;
 }
 async function fetchCityData(lat, lng) {
-  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+  const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=fr`;
   let cityResponse = await fetch(url);
   cityResponse = await cityResponse.json();
   return cityResponse;
