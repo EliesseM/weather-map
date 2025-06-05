@@ -18,19 +18,36 @@ function getRandomCities(cities, count) {
 
 async function createCityCards(count = 5) {
   const randomCities = getRandomCities(cities, count);
+  const cards = [];
 
-  return randomCities.map(async(city) => {
-    let cityResult = await fetchCityData(city.lat, city.lng);
-    console.log(cityResult);
+  for (const city of randomCities) {
+    const cityResult = await fetchCityData(city.lat, city.lng);
+    const weatherResult = await fetchWeatherData(city.lat, city.lng);
+
+    const time = weatherResult.current_weather.time;
+    const hourPart = time.split("T")[1];
     const card = document.createElement("div");
     card.className = "city-card";
     card.innerHTML = `
-      <h3>${city.name}</h3>
-      <p>Latitude: ${city.lat.toFixed(4)}</p>
-      <p>Longitude: ${city.lng.toFixed(4)}</p>
+      <h3>${cityResult.city}</h3>
+      <p>${weatherResult.current_weather.temperature}${weatherResult.current_weather_units.temperature
+      }</p>
+              <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+       <p><strong>Vitesse du vent :</strong> ${weatherResult.current_weather.windspeed} ${weatherResult.current_weather_units.windspeed
+      }</p>
+        <p><strong>Direction du vent :</strong>
+          <span style="
+            display: inline-block;
+            transform: rotate(${weatherResult.current_weather.windspeed}deg);
+            transform-origin: center;">
+            ⬆
+        </p>
     `;
-    return card;
-  });
+
+    cards.push(card);
+  }
+
+  return cards;
 }
 
 export { createCityCards };
