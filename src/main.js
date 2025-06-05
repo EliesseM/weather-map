@@ -5,16 +5,17 @@ import { createCityCards } from "./city-cards.js";
 import { fetchWeatherData } from "./api-requests.js";
 import { fetchCityData } from "./api-requests.js";
 import { serializeCoordinates, deserializeCoordinates } from "./serializer.js";
+import { saveFavorite, afficherFavoris } from "./favorites.js"; // ✅ Import favoris
 import "./style.css";
 
+// === Initialisation de la carte ===
 const map = new maplibre.Map({
   container: "map",
   center: [4.8522, 45.7566],
-  zoom: 10, // Niveau de zoom initial
-  minZoom: 0, // Zoom minimum autorisé
-  maxZoom: 18, // Zoom maximum autorisé
-  maxPitch: 50, // Inclinaison maximale de la carte
-
+  zoom: 10,
+  minZoom: 0,
+  maxZoom: 18,
+  maxPitch: 50,
   style: {
     version: 8,
     sources: {
@@ -36,20 +37,15 @@ const map = new maplibre.Map({
   },
 });
 
-// // The `click` event is an example of a `MapMouseEvent`.
-// // Set up an event listener on the map.
-let favs = [];
+// === Au clic sur la carte ===
 map.on("click", async (e) => {
-  // The event object (e) contains information like the
-  // coordinates of the point on the map that was clicked.
   console.log("A click event has occurred at " + e.lngLat);
-  // You can use the coordinates to fetch weather data or perform other actions.
-  let response = await fetchWeatherData(e.lngLat.lat, e.lngLat.lng);
+
+  const response = await fetchWeatherData(e.lngLat.lat, e.lngLat.lng);
   console.log(response);
 
   const time = response.current_weather.time;
-  const parts = time.split("T");
-  const hourPart = parts[1];
+  const hourPart = time.split("T")[1];
 
   const windSpeed = response.current_weather.windspeed;
   const windDirection = response.current_weather.winddirection;
@@ -58,75 +54,85 @@ map.on("click", async (e) => {
     lng: e.lngLat.lng,
     lat: e.lngLat.lat,
   };
-  // Taille dynamique de l'icône : entre 30px et 80px
-  const arrowSize = Math.min(80, Math.max(30, windSpeed * 4)); // 10 km/h → 40px
+
+  const arrowSize = Math.min(80, Math.max(30, windSpeed * 4));
 
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
       `
-    <div class="popupweather">
-      <h3>${response.current_weather.temperature}${
+      <div class="popupweather">
+        <h3>${response.current_weather.temperature}${
         response.current_weather_units.temperature
       }</h3>
-      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-      <p><strong>Vitesse du vent :</strong> ${windSpeed} ${
+        <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+        <p><strong>Vitesse du vent :</strong> ${windSpeed} ${
         response.current_weather_units.windspeed
       }</p>
-      <p><strong>Direction du vent :</strong>
-        <span style="
-          font-size: ${arrowSize}px;
-          display: inline-block;
-          transform: rotate(${windDirection}deg);
-          transform-origin: center;">
-          ⬆
-        </span>
-        (${windDirection}°)
-      </p>
-      <button id="favoris" value=${serializeCoordinates(
-        coordinates
-      )}>Favoris</button>
-    </div>
+        <p><strong>Direction du vent :</strong>
+          <span style="
+            font-size: ${arrowSize}px;
+            display: inline-block;
+            transform: rotate(${windDirection}deg);
+            transform-origin: center;">
+            ⬆
+          </span> (${windDirection}°)
+        </p>
+        <button id="favoris" value=${serializeCoordinates(
+          coordinates
+        )}>Favoris</button>
+      </div>
     `
     )
     .addTo(map);
+
   const button = document.getElementById("favoris");
-  button.addEventListener("click", () => {
-    let key = "coordinates";
-    let coordinates = deserializeCoordinates(button.value);
-    favs.push(coordinates);
-    let value = JSON.stringify(favs);
-    localStorage.setItem(key, value);
-    console.log(localStorage.getItem("coordinates"));
+  button.addEventListener("click", async () => {
+    const coords = deserializeCoordinates(button.value);
+    const cityData = await fetchCityData(coords.lat, coords.lng);
+
+    const ville = {
+      nom: cityData.city || "Inconnue",
+      lat: coords.lat,
+      lng: coords.lng,
+      temperature: response.current_weather.temperature,
+    };
+
+    saveFavorite(ville);
+    afficherFavoris();
+    console.log("Ajouté aux favoris :", ville);
   });
 });
 
+// === Ajout des villes prédéfinies avec emojis météo ===
 cities.forEach(async (city) => {
   console.log(city);
 
-  let result = await fetchWeatherData(city.lat, city.lng);
+  const result = await fetchWeatherData(city.lat, city.lng);
   console.log(result.current_weather.weathercode);
+
   const el = document.createElement("p");
   el.className = "weathericon";
   el.textContent = weatherCodeToEmoji[result.current_weather.weathercode];
+
   const marker = new maplibre.Marker({ element: el }).setLngLat([
     city.lng,
     city.lat,
   ]);
-  // // Ajouter un popup
-  // let popup = new maplibre.Popup({ offset: 25 }).setHTML(
-  //   `<div class= "popupweather"><h3>Hello</h3>
-  //          <p><strong>Station:</strong> Test Station 1</p>
-  //          <p><strong>Adresse :</strong> Address test</p>
-  //          </div>`
-  // );
-  // marker.setPopup(popup); // Attacher le popup au marqueur
   marker.addTo(map);
 });
 
+// === Cartes aléatoires de villes ===
 const container = document.getElementById("random-city-cards");
-const cards = createCityCards(5);
-cards.forEach((card) => {
-  container.appendChild(card);
-});
+async function displayCards() {
+  const container = document.getElementById("random-city-cards");
+  const cards = await createCityCards(5);
+  cards.forEach((card) => {
+    container.appendChild(card);
+  });
+}
+displayCards();
 console.log(cards);
+
+// === Affichage des favoris au chargement ===
+afficherFavoris();
