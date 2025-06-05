@@ -1,4 +1,6 @@
 import { cities } from "./cityList.js";
+import { fetchCityData } from "./api-requests.js";
+import { fetchWeatherData } from "./api-requests.js";
 
 function getRandomCities(cities, count) {
   let copy = [...cities];
@@ -14,10 +16,12 @@ function getRandomCities(cities, count) {
   return result;
 }
 
-function createCityCards(count = 5) {
+async function createCityCards(count = 5) {
   const randomCities = getRandomCities(cities, count);
 
-  return randomCities.map((city) => {
+  return randomCities.map(async(city) => {
+    let cityResult = await fetchCityData(city.lat, city.lng);
+    console.log(cityResult);
     const card = document.createElement("div");
     card.className = "city-card";
     card.innerHTML = `
