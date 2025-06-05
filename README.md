@@ -75,12 +75,10 @@ amelioration du style général en ayant mi la map dans un container et ajout d'
 ajout de 5 cards qui de maniere aleatoire affichent 5 villes principales en scrollbar sur la gauche
 ajout d'un footer avec infos (participants et mentions légales)
 
+ajout d'un bouton favori sur la popup et si au click cela l'ajoute dans une liste à droite
+
 TODO :
 
-- REDUIRE TAILLE DES CARDS
-
 - AJOUTER LES CONDITIONS METEO DE LA VILLE DANS LES CARDS ALEATOIRES AVEC DES VRAIS DONNEES DE L'API (plus les données bruts de city-list)
-
-- TROUVER LA LOGIQUE POUR AVOIR LA POSSIBILITE D'AJOUTER UNE VILLE EN FAVORI
 
 - AJOUTER UNE UNE SCROLLBAR GENERALE SUR LA "DIVFLEX"
