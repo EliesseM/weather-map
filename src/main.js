@@ -56,8 +56,8 @@ map.on("click", async (e) => {
 
   const coordinates = {
     lng: e.lngLat.lng,
-    lat: e.lngLat.lat
-  }
+    lat: e.lngLat.lat,
+  };
   // Taille dynamique de l'icône : entre 30px et 80px
   const arrowSize = Math.min(80, Math.max(30, windSpeed * 4)); // 10 km/h → 40px
 
@@ -66,8 +66,13 @@ map.on("click", async (e) => {
     .setHTML(
       `
     <div class="popupweather">
-      <h3>${response.current_weather.temperature}${response.current_weather_units.temperature}</h3>
-      <p><strong>Vitesse du vent :</strong> ${windSpeed} ${response.current_weather_units.windspeed}</p>
+      <h3>${response.current_weather.temperature}${
+        response.current_weather_units.temperature
+      }</h3>
+      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+      <p><strong>Vitesse du vent :</strong> ${windSpeed} ${
+        response.current_weather_units.windspeed
+      }</p>
       <p><strong>Direction du vent :</strong>
         <span style="
           font-size: ${arrowSize}px;
@@ -78,21 +83,22 @@ map.on("click", async (e) => {
         </span>
         (${windDirection}°)
       </p>
-      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-      <button id="favoris" value=${serializeCoordinates(coordinates)}>Favoris</button>
+      <button id="favoris" value=${serializeCoordinates(
+        coordinates
+      )}>Favoris</button>
     </div>
     `
     )
     .addTo(map);
-    const button = document.getElementById('favoris');
-    button.addEventListener('click', ()=>{
-      let key = "coordinates";
-      let coordinates = deserializeCoordinates(button.value);
-      favs.push(coordinates);
-      let value = JSON.stringify(favs);
-      localStorage.setItem(key,value);
-      console.log(localStorage.getItem("coordinates"));
-    })
+  const button = document.getElementById("favoris");
+  button.addEventListener("click", () => {
+    let key = "coordinates";
+    let coordinates = deserializeCoordinates(button.value);
+    favs.push(coordinates);
+    let value = JSON.stringify(favs);
+    localStorage.setItem(key, value);
+    console.log(localStorage.getItem("coordinates"));
+  });
 });
 
 cities.forEach(async (city) => {
