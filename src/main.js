@@ -5,7 +5,7 @@ import { createCityCards } from "./city-cards.js";
 import { fetchWeatherData } from "./api-requests.js";
 import { fetchCityData } from "./api-requests.js";
 import { serializeCoordinates, deserializeCoordinates } from "./serializer.js";
-import { saveFavorite, afficherFavoris } from "./favorites.js"; // ✅ Import favoris
+import { saveFavorite, displayFavorites } from "./favorites.js";
 import "./style.css";
 
 // === Initialisation de la carte ===
@@ -36,6 +36,9 @@ const map = new maplibre.Map({
     ],
   },
 });
+
+// === Affichage des favoris au chargement ===
+displayFavorites();
 
 // === Au clic sur la carte ===
 map.on("click", async (e) => {
@@ -99,7 +102,7 @@ map.on("click", async (e) => {
     };
 
     saveFavorite(ville);
-    afficherFavoris();
+    displayFavorites();
     console.log("Ajouté aux favoris :", ville);
   });
 });
@@ -134,5 +137,3 @@ async function displayCards() {
 displayCards();
 console.log(cards);
 
-// === Affichage des favoris au chargement ===
-afficherFavoris();
