@@ -55,9 +55,7 @@ api.bigdatacloud.net
 
 api.open-meteo.com
 
-###### 👥 Projet réalisé par
-
-Cette application a été développée dans le cadre d'un projet collaboratif par :
+###### 👥 Projet réalisé par :
 
 Loriot Guillaume
 
@@ -67,5 +65,6 @@ Norris Amrouche
 
 Alexandre Barruel
 
-📄Licence
+###### 📄Licence :
+
 Ce projet est open-source. N’hésitez pas à l'utiliser, l'adapter ou le contribuer !
