@@ -36,10 +36,13 @@ yarn install
 npm run dev
 # ou
 yarn dev
+```
+
 Une fois lancé, accédez à l'application via :
 http://localhost:5173
 
-🛠️ Technologies utilisées
+##### 🛠️ Technologies utilisées
+
 Vite – pour le bundling ultra-rapide
 
 JavaScript Vanilla – sans framework
@@ -52,7 +55,8 @@ api.bigdatacloud.net
 
 api.open-meteo.com
 
-👥 Projet réalisé par
+###### 👥 Projet réalisé par
+
 Cette application a été développée dans le cadre d'un projet collaboratif par :
 
 Loriot Guillaume
@@ -63,6 +67,5 @@ Norris Amrouche
 
 Alexandre Barruel
 
-📄 Licence
+📄Licence
 Ce projet est open-source. N’hésitez pas à l'utiliser, l'adapter ou le contribuer !
-```
