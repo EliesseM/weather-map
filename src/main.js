@@ -126,9 +126,9 @@ cities.forEach(async (city) => {
 });
 
 // === Cartes aléatoires de villes ===
-const container = document.getElementById("random-city-cards");
+const container = document.getElementById("slide-show");
 async function displayCards() {
-  const container = document.getElementById("random-city-cards");
+  const container = document.getElementById("slide-show");
   const cards = await createCityCards(5);
   cards.forEach((card) => {
     container.appendChild(card);
