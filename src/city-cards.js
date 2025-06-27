@@ -29,19 +29,20 @@ async function createCityCards(count = 5) {
     const card = document.createElement("div");
     card.className = "city-card";
     card.innerHTML = `
-        <h3>${cityResult.countryName}</h3>
-
+    <hgroup>
     <h3>${cityResult.city}</h3>
+    <p>${cityResult.countryName}</p>
+    </hgroup>
       <p>${weatherResult.current_weather.temperature}${weatherResult.current_weather_units.temperature}</p>
-              <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-       <p><strong>Vitesse du vent :</strong> ${weatherResult.current_weather.windspeed} ${weatherResult.current_weather_units.windspeed}</p>
-        <p><strong>Direction du vent :</strong>
-          <span style="
-            display: inline-block;
-            transform: rotate(${weatherResult.current_weather.windspeed}deg);
-            transform-origin: center;">
-            ⬆
-        </p>
+      <p><strong>Vitesse du vent :</strong> ${weatherResult.current_weather.windspeed} ${weatherResult.current_weather_units.windspeed}</p>
+      <p><strong>Direction du vent :</strong>
+      <span style="
+      display: inline-block;
+      transform: rotate(${weatherResult.current_weather.windspeed}deg);
+      transform-origin: center;">
+      ⬆
+      </p>
+      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
     `;
 
     cards.push(card);
