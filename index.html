@@ -2,8 +2,8 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carte avec Maplibre JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carte météo interactive - Style Windy</title>
     <link
       href="https://cdn.jsdelivr.net/npm/maplibre-gl@2.3.0/dist/maplibre-gl.css"
       rel="stylesheet"
@@ -11,23 +11,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <div class="header-content">
-        <h1>Carte météo interactive</h1>
-      </div>
-    </header>
+    <!-- Carte en fond -->
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
 
-    <main>
-      <div id="description"></div>
-      <div id="flex">
-        <div id="random-city-cards"></div>
-        <div id="map-container">
-          <div id="map"></div>
-        </div>
-        <div id="favorites">
-        </div>
-      </div>
-    </main>
+    <!-- Sidebar latérale -->
+    <aside id="sidebar">
+      <header>
+        <h1>Carte météo interactive</h1>
+      </header>
+
+      <section id="description"></section>
+
+      <section id="random-city-cards"></section>
+
+      <section id="favorites"></section>
+
+      <footer></footer>
+    </aside>
 
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/Description.js"></script>
