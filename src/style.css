@@ -57,7 +57,7 @@ body {
 
 /* Description */
 #description {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.4;
   margin-bottom: 1.2rem;
   color: #c0c7ffcc;
@@ -94,6 +94,11 @@ body {
   user-select: none;
 }
 
+.city-card:hover {
+  background: #324e87;
+  box-shadow: 0 6px 20px rgba(50, 78, 135, 0.9);
+}
+
 .city-card-content {
   display: flex;
   justify-content: space-evenly;
@@ -103,8 +108,9 @@ body {
   position: relative;
   width: 40%;
 }
-.city-card-content div .temp{
-font-size: 1rem;
+
+.city-card-content div .temp {
+  font-size: 1rem;
   font-weight: bold;
   margin: 0 5px;
 }
@@ -160,13 +166,9 @@ font-size: 1rem;
 
 .city-card p {
   font-size: 0.6rem;
-   margin: 5px;
+  margin: 5px;
 }
 
-.city-card:hover {
-  background: #324e87;
-  box-shadow: 0 6px 20px rgba(50, 78, 135, 0.9);
-}
 
 /* Favoris */
 #favorites {
@@ -174,9 +176,49 @@ font-size: 1rem;
   color: #8899bb;
   border-top: 1px solid #223355;
   padding-top: 1rem;
-  user-select: none;
 }
 
+.fav-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(22, 44, 83, 0.6);
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 50, 0.7);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: #c0c7ff;
+
+}
+
+.fav-weather {
+  display: flex;
+}
+
+#fav-weather-icon {
+  font-size: 2rem;
+  margin: 0 10px 0 0;
+}
+
+.delete-fav {
+  width: 40px;
+  height: 40px;
+  font-size: 1.8rem;
+  color: #c0c7ff;
+  border: none;
+  border-radius: 10px;
+  background: rgba(33, 44, 64, 0.6);
+  box-shadow: 0 3px 10px rgba(0, 0, 50, 0.7);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+
+}
+
+.delete-fav:hover {
+  background: rgba(15, 28, 47, 0.85);
+  box-shadow: 0 6px 20px rgba(50, 78, 135, 0.9);
+}
 
 /* Footer */
 footer {

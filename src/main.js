@@ -99,6 +99,7 @@ map.on("click", async (e) => {
       lat: coords.lat,
       lng: coords.lng,
       temperature: response.current_weather.temperature,
+      weathercode: response.current_weather.weathercode,
     };
 
     saveFavorite(ville);

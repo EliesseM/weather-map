@@ -1,10 +1,13 @@
+import { weatherCodeToEmoji } from "./weatherCode.js";
+
+
 function saveFavorite(city) {
   let favorites = JSON.parse(localStorage.getItem("coordinates")) || [];
 
-  // Évite les doublons (même nom ET mêmes coordonnées)
+  // Évite les doublons
   const exists = favorites.some(
     (fav) =>
-      fav.nom === city.nom && fav.lat === city.lat && fav.lng === city.lng
+      fav.nom === city.nom
   );
 
   if (!exists) {
@@ -39,15 +42,18 @@ function displayFavorites() {
 
   favorites.forEach((city, index) => {
     const item = document.createElement("li");
-    item.style.marginBottom = "10px";
+    item.className = "fav-item";
 
 
     item.innerHTML = `
-      <strong>${city.nom}</strong> (${city.lat.toFixed(
-      2
-    )}, ${city.lng.toFixed(2)}) : 
-      ${city.temperature}°C
-      <button style="margin-left: 10px;" data-index="${index}" class="delete-fav">🗑</button>
+    <div>
+      <p><strong>${city.nom}</strong></p>
+      <div class ="fav-weather">
+      <p id="fav-weather-icon">${weatherCodeToEmoji[city.weathercode]}</p>
+      <p>${city.temperature}°C</p>
+      </div>
+    </div>
+    <button data-index="${index}" class="delete-fav">🗑</button>
     `;
 
     list.appendChild(item);
