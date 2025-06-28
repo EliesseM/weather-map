@@ -46,7 +46,7 @@ map.on("click", async (e) => {
 
   const response = await fetchWeatherData(e.lngLat.lat, e.lngLat.lng);
   console.log(response);
-
+  const cityResult = await fetchCityData(e.lngLat.lat, e.lngLat.lng);
   const time = response.current_weather.time;
   const hourPart = time.split("T")[1];
 
@@ -63,33 +63,40 @@ map.on("click", async (e) => {
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
-      `
-      <div class="popupweather">
-        <h3>${response.current_weather.temperature}${
-        response.current_weather_units.temperature
-      }</h3>
-        <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-        <p><strong>Vitesse du vent :</strong> ${windSpeed} ${
-        response.current_weather_units.windspeed
-      }</p>
-        <p><strong>Direction du vent :</strong>
-          <span style="
-            font-size: ${arrowSize}px;
-            display: inline-block;
-            transform: rotate(${windDirection}deg);
+    `
+    <div class="city-card">
+    <div class="city-card-title">
+      <hgroup>
+        <h3>${cityResult.city}</h3>
+        <p>${cityResult.countryName}</p>
+      </hgroup>
+      <p>${weatherCodeToEmoji[response.current_weather.weathercode]}</p>
+    </div>
+    <div class="city-card-content">
+      <div>
+        <p class="temp">${response.current_weather.temperature}${response.current_weather_units.temperature}</p>
+        <p><strong>Vents :</strong> ${response.current_weather.windspeed}
+          ${response.current_weather_units.windspeed}</p>
+        <p><strong>Dernier relevé :</strong> ${hourPart} h</p>
+      </div>
+      <div class="compass-container">
+        <img src="public/compass-white.png" alt="" class="compass">
+        <img src="public/arrow-white.png" alt="" class="arrow "style="transform: rotate(${response.current_weather.winddirection}deg);
             transform-origin: center;">
-            ⬆
-          </span> (${windDirection}°)
-        </p>
-        <button id="favoris" value=${serializeCoordinates(
+      </div>
+    </div>
+            <button id="fav-button" value=${serializeCoordinates(
           coordinates
         )}>Favoris</button>
-      </div>
+
+    </div>
     `
     )
+.addClassName("popup-weather")
     .addTo(map);
+   
 
-  const button = document.getElementById("favoris");
+  const button = document.getElementById("fav-button");
   button.addEventListener("click", async () => {
     const coords = deserializeCoordinates(button.value);
     const cityData = await fetchCityData(coords.lat, coords.lng);

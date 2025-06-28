@@ -30,7 +30,8 @@ async function createCityCards(count = 10) {
     const hourPart = time.split("T")[1];
     const card = document.createElement("div");
     card.className = "city-card";
-    card.innerHTML = `
+    card.innerHTML = 
+    `
 <div class="city-card-title">
   <hgroup>
     <h3>${cityResult.city}</h3>
