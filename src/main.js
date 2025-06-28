@@ -112,8 +112,6 @@ cities.forEach(async (city) => {
   console.log(city);
 
   const result = await fetchWeatherData(city.lat, city.lng);
-  console.log(result.current_weather.weathercode);
-
   const el = document.createElement("p");
   el.className = "weathericon";
   el.textContent = weatherCodeToEmoji[result.current_weather.weathercode];
@@ -135,5 +133,25 @@ async function displayCards() {
   });
 }
 displayCards();
-console.log(cards);
+displayCards().then(() => {
+  const slideShow = document.getElementById("slide-show");
+  // On duplique le contenu pour avoir une boucle continue
+  slideShow.innerHTML += slideShow.innerHTML;
+
+  // Initialisation du scroll
+  slideShow.scrollLeft = 0;
+  const speed = 1;
+
+  function loop() {
+    slideShow.scrollLeft += speed;
+    // quand on dépase la moitié des cards
+    if (slideShow.scrollLeft >= slideShow.scrollWidth / 2) {
+      slideShow.scrollLeft = 0;
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+});
+
+
 
