@@ -7,7 +7,7 @@ function saveFavorite(city) {
   // Évite les doublons
   const exists = favorites.some(
     (fav) =>
-      fav.nom === city.nom
+      fav.name === city.name
   );
 
   if (!exists) {
@@ -47,7 +47,7 @@ function displayFavorites() {
 
     item.innerHTML = `
     <div>
-      <p><strong>${city.nom}</strong></p>
+      <p><strong>${city.name}</strong></p>
       <div class ="fav-weather">
       <p id="fav-weather-icon">${weatherCodeToEmoji[city.weathercode]}</p>
       <p>${city.temperature}°C</p>

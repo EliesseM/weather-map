@@ -7,12 +7,11 @@ import { fetchCityData } from "./api-requests.js";
 import { serializeCoordinates, deserializeCoordinates } from "./serializer.js";
 import { saveFavorite, displayFavorites } from "./favorites.js";
 import "./style.css";
-
 // === Initialisation de la carte ===
 const map = new maplibre.Map({
   container: "map",
-  center: [4.8522, 45.7566],
-  zoom: 10,
+  center: [2.6399999, 47.56],
+  zoom: 4.5,
   minZoom: 0,
   maxZoom: 18,
   maxPitch: 50,
@@ -32,6 +31,13 @@ const map = new maplibre.Map({
         id: "osm",
         type: "raster",
         source: "osm",
+        paint: {
+          "raster-brightness-max": 0.6,
+          // "raster-brightness-min": 0.2,
+          "raster-saturation": 0.3,
+          "raster-contrast": 0.5,
+          // "raster-opacity": 1.0
+        }
       },
     ],
   },
@@ -63,7 +69,7 @@ map.on("click", async (e) => {
   const popup = new maplibre.Popup({ closeOnClick: true })
     .setLngLat(e.lngLat)
     .setHTML(
-    `
+      `
     <div class="city-card">
     <div class="city-card-title">
       <hgroup>
@@ -86,15 +92,15 @@ map.on("click", async (e) => {
       </div>
     </div>
             <button id="fav-button" value=${serializeCoordinates(
-          coordinates
-        )}>Favoris</button>
+        coordinates
+      )}>Favoris</button>
 
     </div>
     `
     )
-.addClassName("popup-weather")
+    .addClassName("popup-weather")
     .addTo(map);
-   
+
 
   const button = document.getElementById("fav-button");
   button.addEventListener("click", async () => {
@@ -102,7 +108,7 @@ map.on("click", async (e) => {
     const cityData = await fetchCityData(coords.lat, coords.lng);
 
     const ville = {
-      nom: cityData.city || "Inconnue",
+      name: cityData.city || "Inconnue",
       lat: coords.lat,
       lng: coords.lng,
       temperature: response.current_weather.temperature,
