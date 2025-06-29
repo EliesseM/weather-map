@@ -107,7 +107,7 @@ body {
 
 .city-card-content .compass-container {
   position: relative;
-  width: 40%;
+  width: 90px;
 }
 
 .city-card-content div .temp {

@@ -83,7 +83,7 @@ map.on("click", async (e) => {
         <p class="temp">${response.current_weather.temperature}${response.current_weather_units.temperature}</p>
         <p><strong>Vents :</strong> ${response.current_weather.windspeed}
           ${response.current_weather_units.windspeed}</p>
-        <p><strong>Dernier relevé :</strong> ${hourPart} h</p>
+        <p><strong>Dernier relevé :</strong> ${hourPart}h</p>
       </div>
       <div class="compass-container">
         <img src="public/compass-white.png" alt="" class="compass">
