@@ -1,6 +1,8 @@
 import { cities } from "./cityList.js";
 import { fetchCityData } from "./api-requests.js";
 import { fetchWeatherData } from "./api-requests.js";
+import { weatherCodeToEmoji } from "./weatherCode.js";
+
 
 function getRandomCities(cities, count) {
   let copy = [...cities];
@@ -16,7 +18,7 @@ function getRandomCities(cities, count) {
   return result;
 }
 
-async function createCityCards(count = 5) {
+async function createCityCards(count = 10) {
   const randomCities = getRandomCities(cities, count);
   const cards = [];
 
@@ -28,21 +30,28 @@ async function createCityCards(count = 5) {
     const hourPart = time.split("T")[1];
     const card = document.createElement("div");
     card.className = "city-card";
-    card.innerHTML = `
-    <hgroup>
+    card.innerHTML = 
+    `
+<div class="city-card-title">
+  <hgroup>
     <h3>${cityResult.city}</h3>
     <p>${cityResult.countryName}</p>
-    </hgroup>
-      <p>${weatherResult.current_weather.temperature}${weatherResult.current_weather_units.temperature}</p>
-      <p><strong>Vitesse du vent :</strong> ${weatherResult.current_weather.windspeed} ${weatherResult.current_weather_units.windspeed}</p>
-      <p><strong>Direction du vent :</strong>
-      <span style="
-      display: inline-block;
-      transform: rotate(${weatherResult.current_weather.windspeed}deg);
-      transform-origin: center;">
-      ⬆
-      </p>
-      <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
+  </hgroup>
+  <p>${weatherCodeToEmoji[weatherResult.current_weather.weathercode]}</p>
+</div>
+<div class="city-card-content">
+  <div>
+    <p class="temp">${weatherResult.current_weather.temperature}${weatherResult.current_weather_units.temperature}</p>
+    <p><strong>Vents :</strong> ${weatherResult.current_weather.windspeed}
+      ${weatherResult.current_weather_units.windspeed}</p>
+    <p><strong>Dernier relevé :</strong> ${hourPart} h</p>
+  </div>
+  <div class="compass-container">
+    <img src="public/compass-white.png" alt="" class="compass">
+    <img src="public/arrow-white.png" alt="" class="arrow "style="transform: rotate(${weatherResult.current_weather.winddirection}deg);
+        transform-origin: center;">
+  </div>
+</div>
     `;
 
     cards.push(card);

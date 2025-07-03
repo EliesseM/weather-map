@@ -7,12 +7,11 @@ import { fetchCityData } from "./api-requests.js";
 import { serializeCoordinates, deserializeCoordinates } from "./serializer.js";
 import { saveFavorite, displayFavorites } from "./favorites.js";
 import "./style.css";
-
 // === Initialisation de la carte ===
 const map = new maplibre.Map({
   container: "map",
-  center: [4.8522, 45.7566],
-  zoom: 10,
+  center: [2.6399999, 47.56],
+  zoom: 4.5,
   minZoom: 0,
   maxZoom: 18,
   maxPitch: 50,
@@ -32,6 +31,13 @@ const map = new maplibre.Map({
         id: "osm",
         type: "raster",
         source: "osm",
+        paint: {
+          "raster-brightness-max": 0.6,
+          // "raster-brightness-min": 0.2,
+          "raster-saturation": 0.3,
+          "raster-contrast": 0.5,
+          // "raster-opacity": 1.0
+        }
       },
     ],
   },
@@ -46,7 +52,7 @@ map.on("click", async (e) => {
 
   const response = await fetchWeatherData(e.lngLat.lat, e.lngLat.lng);
   console.log(response);
-
+  const cityResult = await fetchCityData(e.lngLat.lat, e.lngLat.lng);
   const time = response.current_weather.time;
   const hourPart = time.split("T")[1];
 
@@ -64,41 +70,49 @@ map.on("click", async (e) => {
     .setLngLat(e.lngLat)
     .setHTML(
       `
-      <div class="popupweather">
-        <h3>${response.current_weather.temperature}${
-        response.current_weather_units.temperature
-      }</h3>
-        <p><strong>Heure du relevé :</strong> ${hourPart} h</p>
-        <p><strong>Vitesse du vent :</strong> ${windSpeed} ${
-        response.current_weather_units.windspeed
-      }</p>
-        <p><strong>Direction du vent :</strong>
-          <span style="
-            font-size: ${arrowSize}px;
-            display: inline-block;
-            transform: rotate(${windDirection}deg);
-            transform-origin: center;">
-            ⬆
-          </span> (${windDirection}°)
-        </p>
-        <button id="favoris" value=${serializeCoordinates(
-          coordinates
-        )}>Favoris</button>
+    <div class="city-card">
+    <div class="city-card-title">
+      <hgroup>
+        <h3>${cityResult.city}</h3>
+        <p>${cityResult.countryName}</p>
+      </hgroup>
+      <p>${weatherCodeToEmoji[response.current_weather.weathercode]}</p>
+    </div>
+    <div class="city-card-content">
+      <div>
+        <p class="temp">${response.current_weather.temperature}${response.current_weather_units.temperature}</p>
+        <p><strong>Vents :</strong> ${response.current_weather.windspeed}
+          ${response.current_weather_units.windspeed}</p>
+        <p><strong>Dernier relevé :</strong> ${hourPart}h</p>
       </div>
+      <div class="compass-container">
+        <img src="public/compass-white.png" alt="" class="compass">
+        <img src="public/arrow-white.png" alt="" class="arrow "style="transform: rotate(${response.current_weather.winddirection}deg);
+            transform-origin: center;">
+      </div>
+    </div>
+            <button id="fav-button" value=${serializeCoordinates(
+        coordinates
+      )}>Favoris</button>
+
+    </div>
     `
     )
+    .addClassName("popup-weather")
     .addTo(map);
 
-  const button = document.getElementById("favoris");
+
+  const button = document.getElementById("fav-button");
   button.addEventListener("click", async () => {
     const coords = deserializeCoordinates(button.value);
     const cityData = await fetchCityData(coords.lat, coords.lng);
 
     const ville = {
-      nom: cityData.city || "Inconnue",
+      name: cityData.city || "Inconnue",
       lat: coords.lat,
       lng: coords.lng,
       temperature: response.current_weather.temperature,
+      weathercode: response.current_weather.weathercode,
     };
 
     saveFavorite(ville);
@@ -112,8 +126,6 @@ cities.forEach(async (city) => {
   console.log(city);
 
   const result = await fetchWeatherData(city.lat, city.lng);
-  console.log(result.current_weather.weathercode);
-
   const el = document.createElement("p");
   el.className = "weathericon";
   el.textContent = weatherCodeToEmoji[result.current_weather.weathercode];
@@ -135,5 +147,25 @@ async function displayCards() {
   });
 }
 displayCards();
-console.log(cards);
+displayCards().then(() => {
+  const slideShow = document.getElementById("slide-show");
+  // On duplique le contenu pour avoir une boucle continue
+  slideShow.innerHTML += slideShow.innerHTML;
+
+  // Initialisation du scroll
+  slideShow.scrollLeft = 0;
+  const speed = 1;
+
+  function loop() {
+    slideShow.scrollLeft += speed;
+    // quand on dépase la moitié des cards
+    if (slideShow.scrollLeft >= slideShow.scrollWidth / 2) {
+      slideShow.scrollLeft = 0;
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+});
+
+
 
